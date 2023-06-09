@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.no-touch-highlight {
+  -webkit-touch-callout: none; /* Disable callout */
+  -webkit-user-select: none; /* Disable selection */
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.no-touch-highlight:focus {
+  outline: none !important;
+}
+.fade-out {
+  opacity: 0.5;
+  transition: opacity 2000ms ease-in-out;
+}
+.slide-left-to-right {
+  animation: slideLeftToRight 0.3s ease;
+}
+
+@keyframes slideLeftToRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

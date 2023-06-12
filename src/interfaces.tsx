@@ -7,6 +7,7 @@ export interface statusInterface {
   progressContainerColor?: string;
   progressContainerStyles?: string;
   footer?: ReactNode;
+  loop: boolean;
 }
 
 export interface ProgressWrapperInterface {

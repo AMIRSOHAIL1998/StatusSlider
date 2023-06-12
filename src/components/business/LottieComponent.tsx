@@ -2,24 +2,33 @@ import React, { useState, useEffect, useRef } from "react";
 import Lottie from "lottie-react";
 import LottieAnimation from "./businessScreenLottie.json";
 
-const LottieComponent = (props: any) => {
+interface LottieInterface {
+  lottie: string;
+  loop: boolean;
+  activeSlide: number;
+  statusArrayLength: number;
+}
+const LottieComponent = ({
+  lottie,
+  loop,
+  activeSlide,
+  statusArrayLength,
+}: LottieInterface) => {
   const animationRef = useRef<any>(null);
 
   useEffect(() => {
-    if (props.lottie == "next") {
+    if (lottie == "next") {
       startLottieAnimation();
-    } else if (props.lottie == "previous") {
+    } else if (lottie == "previous") {
       stopLottieAnimation();
-    } else if (props.lottie == "pause") {
+    } else if (lottie == "pause") {
       pauseLottieAnimation();
     }
-
-    console.log("This is animation Ref", animationRef.current);
-  }, [props.lottie]);
+  }, [lottie]);
 
   const startLottieAnimation = () => {
     if (animationRef.current) {
-      animationRef.current.setSubframe(1);
+      // animationRef.current.setSubframe(1);
       animationRef.current.setSpeed(1);
       animationRef.current.play();
     }
@@ -27,7 +36,7 @@ const LottieComponent = (props: any) => {
 
   const stopLottieAnimation = () => {
     if (animationRef.current) {
-      animationRef.current.setSubframe(-1);
+      // animationRef.current.setSubframe(-1);
       animationRef.current.setSpeed(-1);
       animationRef.current.play();
     }

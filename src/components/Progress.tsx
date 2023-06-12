@@ -21,7 +21,7 @@ const Progress = ({
   let interval: any = null;
   const targetProgress = 100;
   const duration = count - 10;
-  const increment = (targetProgress / duration) * 12;
+  const increment = (targetProgress / duration) * 13;
 
   useEffect(() => {
     let intervalId: any;
@@ -29,7 +29,9 @@ const Progress = ({
       // setting time from lastTime + 100 in every 100 milisecond using javascript setInterval method
       intervalId = setInterval(() => setLastTime(lastTime + 100), 100);
     }
-
+    if (slideChange == true) {
+      setLastTime(0);
+    }
     if (lastTime >= count - 100) {
       setLastTime(0);
     }
@@ -51,6 +53,10 @@ const Progress = ({
       if (isScrollPaused == true) {
         setProgress(currentProgressRef.current);
       }
+      if (slideChange == true) {
+        currentProgressRef.current = 0;
+        setProgress(0);
+      }
     };
 
     const startProgress = () => {
@@ -59,11 +65,12 @@ const Progress = ({
       }, 10);
     };
 
-    if (progress >= 99) {
-      currentProgressRef.current = 0;
-      setProgress(0);
-    }
-    if (slideChange == true) {
+    // if (slideChange == true) {
+    //   currentProgressRef.current = 0;
+    //   setProgress(0);
+    // }
+
+    if (progress >= 95) {
       currentProgressRef.current = 0;
       setProgress(0);
     }
@@ -78,7 +85,7 @@ const Progress = ({
     return () => {
       clearInterval(interval);
     };
-  }, [isScrollPaused, activeSlide]);
+  }, [isScrollPaused, activeSlide, slideChange]);
 
   const getProgressStyle = (active: number) => {
     switch (active) {

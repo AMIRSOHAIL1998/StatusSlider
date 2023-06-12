@@ -19,11 +19,16 @@
   opacity: 0.5;
   transition: opacity 2000ms ease-in-out;
 }
-.slide-left-to-right {
-  animation: slideLeftToRight 0.3s ease;
+
+.slide-right-to-left{
+  animation: slideRightToLeft 0.3s ease;
 }
 
-@keyframes slideLeftToRight {
+.dropdown-top-to-bottom {
+  animation: dropdown 0.3 ease;
+} 
+
+@keyframes slideRightToLeft {
   0% {
     transform: translateX(100%);
   }
@@ -31,3 +36,63 @@
     transform: translateX(0%);
   }
 }
+
+@keyframes dropdown {
+  0% {
+    transform: translatey(100%);
+  }
+  100% {
+    transform: translatey(0%);
+  }
+}
+
+
+.custom-select {
+  /* Set the background color of the select dropdown */
+  /* background-color: ; */
+
+  /* Set the color of the text inside the select dropdown */
+  color: #000000;
+
+  /* Adjust the size and padding of the select dropdown */
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  padding-left: 10px;
+
+  /* Set the appearance property to none to remove the default dropdown arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Add a custom background image as the dropdown arrow */
+  background-image: url("./assets/dropdown.svg");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10%) center;
+  background-size: 16px; /* Adjust the size of the custom arrow */
+
+  display: inline-block;
+  width: fit-content;
+}
+
+/* Set the color of the custom arrow image */
+.custom-select::-ms-expand {
+  color: #ff0000; /* Replace with your desired color */
+}
+
+
+/* Optional: Add hover and focus styles for the select dropdown */
+
+/* .custom-select:hover,
+.custom-select:focus {
+  background-color: #f0f0f0; 
+  outline: none;
+} */
+/* Change to your desired hover/focus color */
+
+
+
+
+
+
+

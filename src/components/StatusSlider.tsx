@@ -10,6 +10,7 @@ const StatusSlider = ({
   progressContainerColor,
   progressContainerStyles,
   footer,
+  loop,
 }: statusInterface) => {
   const [currentStatusIndex, setCurrentStatusIndex] = useState(0);
   const [isScrollPaused, setScrollPaused] = useState(false);
@@ -17,48 +18,77 @@ const StatusSlider = ({
   const [preIndex, setPreIndex] = useState<number>();
   const [lastTime, setLastTime] = useState<number>(0);
   const [slideChange, setSlideChange] = useState<boolean>(false);
-  const [lottie, setLottie] = useState<string>();
+  const [lottie, setLottie] = useState<string>("");
 
   const intervalRef = useRef<any>(null);
   const currentStatus = statusArray[currentStatusIndex];
 
-  const remainingTime =
+  let remainingTime =
     preIndex == currentStatusIndex && lastTime > 0 ? count - lastTime : 2000;
 
   const startAutoScroll = () => {
     clearInterval(intervalRef.current);
-    if (!isScrollPaused) {
+    if (!isScrollPaused && loop) {
       setCurrentStatusIndex((preindex) => {
         const nextIndex = preindex == statusArray.length - 1 ? 0 : preindex + 1;
         return nextIndex;
       });
       setLottie("next");
+    } else if (!isScrollPaused && !loop) {
+      if (currentStatusIndex < statusArray.length - 1) {
+        setCurrentStatusIndex((preindex) => {
+          const nextIndex = preindex + 1;
+          return nextIndex;
+        });
+      } else if (currentStatusIndex == statusArray.length - 1) {
+        setCurrentStatusIndex(currentStatusIndex);
+      }
+      if (currentStatusIndex != statusArray.length - 1) {
+        setLottie("next");
+      }
     }
-    // Calculate remaining time
   };
 
   const handlePrevStatus = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = null;
     setScrollPaused(true);
-    setCurrentStatusIndex(
-      currentStatusIndex == 0 ? statusArray.length - 1 : currentStatusIndex - 1
-    );
+    remainingTime = 2000;
+    loop
+      ? setCurrentStatusIndex(
+          currentStatusIndex > 0
+            ? currentStatusIndex - 1
+            : statusArray.length - 1
+        )
+      : setCurrentStatusIndex(
+          currentStatusIndex > 0 ? currentStatusIndex - 1 : 0
+        );
     setSlideChange(true);
-    handleScrollResume();
-    setLottie("previous");
+    if ((currentStatusIndex != 0 && !loop) || loop) {
+      setLottie("previous");
+    }
   };
 
   const handleNextStatus = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = null;
     setScrollPaused(true);
-    setCurrentStatusIndex(
-      currentStatusIndex == statusArray.length - 1 ? 0 : currentStatusIndex + 1
-    );
+    remainingTime = 2000;
+    loop
+      ? setCurrentStatusIndex(
+          currentStatusIndex < statusArray.length - 1 && loop
+            ? currentStatusIndex + 1
+            : 0
+        )
+      : setCurrentStatusIndex(
+          currentStatusIndex < statusArray.length - 1
+            ? currentStatusIndex + 1
+            : statusArray.length - 1
+        );
     setSlideChange(true);
-    handleScrollResume();
-    setLottie("next");
+    if ((currentStatusIndex != statusArray.length - 1 && !loop) || loop) {
+      setLottie("next");
+    }
   };
 
   const handleScrollResume = () => {
@@ -94,14 +124,13 @@ const StatusSlider = ({
     const rect = e.currentTarget.getBoundingClientRect();
     const clickPosition = e.clientX - rect.left;
     const halfWidth = rect.width / 2;
-    console.log(e.target);
-
     if (clickPosition < halfWidth) {
       handlePrevStatus();
     } else {
       handleNextStatus();
     }
   };
+
   useEffect(() => {
     const lottieTimer = setInterval(() => {
       setLottie("pause");
@@ -113,12 +142,7 @@ const StatusSlider = ({
   }, []);
 
   return (
-    <div
-      className="flex relative bg-white cursor-pointer md:w-96 md:h-fit h-screen w-screen overflow-hidden no-touch-highlight"
-      onTouchStart={handleScrollPause}
-      onTouchEnd={handleScrollResume}
-      onTouchCancel={handleScrollResume}
-    >
+    <div className="flex relative bg-white cursor-pointer md:w-96 md:h-fit h-screen w-screen overflow-hidden no-touch-highlight">
       <div className="absolute w-full">
         <div className="flex justify-between items-center px-6">
           {statusArray.map((item: any, index: number) => (
@@ -156,9 +180,20 @@ const StatusSlider = ({
         onTouchCancel={handleScrollResume}
       >
         {currentStatus}
-        <div className="absolute -bottom-16 sm:-bottom-20 left-0 right-0">
-          {footer ? footer : <LottieComponent lottie={lottie} />}
-        </div>
+        {footer ? (
+          <div className="flex h-[20%] z-50 w-full justify-center items-center">
+            {footer}
+          </div>
+        ) : (
+          <div className="absolute -bottom-16 sm:-bottom-20 left-0 right-0">
+            <LottieComponent
+              lottie={lottie}
+              loop={loop}
+              statusArrayLength={statusArray.length}
+              activeSlide={currentStatusIndex}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

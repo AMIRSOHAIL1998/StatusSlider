@@ -408,6 +408,13 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@locoworks/reusejs-react-button@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@locoworks/reusejs-react-button/-/reusejs-react-button-0.1.1.tgz#f6369fdb8324a8140b3b155c1f4546ea21769b14"
+  integrity sha512-uEA0gveH5wET5lYV+TR0TKbhBeG7OaEzo9mAopYDrEw9+54AQ5oLJ+NP2l9s1ITEGhPkJ6NeVWjpKyU5GU4vXg==
+  dependencies:
+    tailwind-merge "^1.12.0"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -1453,6 +1460,11 @@ supports-color@^7.1.0:
   integrity sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
   dependencies:
     has-flag "^4.0.0"
+
+tailwind-merge@^1.12.0:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.13.1.tgz#da6b27c3fa0c2068895cb5e15e9ca92d4cb61e05"
+  integrity sha512-tRtRN22TDokGi2TuYSvuHQuuW6BJ/zlUEG+iYpAQ9i66msc/0eU/+HPccbPnNNH0mCPp0Ob8thaC8Uy9CxHitQ==
 
 text-table@^0.2.0:
   version "0.2.0"

@@ -29,47 +29,25 @@ const App = () => {
   ]);
 
   return (
-    <div className="flex justify-between w-screen">
-      <div className="flex items-center justify-center h-screen w-screen bg-gray-200 no-touch-highlight">
-        {/* <div className="flex w-screen h-fit justify-center items-center flex-col"> */}
-        {/* <div className="relative h-full"> */}
-        {/* StatusSlider takes Props
+    <div className="flex items-center justify-center h-screen w-screen bg-gray-200 no-touch-highlight">
+      <div className="flex w-screen h-fit justify-center items-center flex-col">
+        <div className="relative h-full">
+          {/* StatusSlider takes Props
               1. count in millisecond for slide time
               2. StatusArray as Array of Component 
               3. progressColor as Color of the progressBar
               4. progressContainerColor as color of the progress Container
               5. progressContainerStyles as height of the Progress Bar
           */}
-        {/* <StatusSlider
-              count={2000}
-              statusArray={businessSlide}
-              progressColor={"bg-black"}
-              progressContainerColor={"bg-gray-300"}
-              progressContainerStyles={`h-2`}
-              footer={""}
-              loop={false}
-            /> */}
-        {/* </div> */}
-        {/* </div> */}
-        <div className="flex w-screen h-fit justify-center items-center flex-col">
-          <div className="relative h-full">
-            {/* StatusSlider takes Props
-              1. count in millisecond for slide time
-              2. StatusArray as Array of Component 
-              3. progressColor as Color of the progressBar
-              4. progressContainerColor as color of the progress Container
-              5. progressContainerStyles as height of the Progress Bar
-          */}
-            <StatusSlider
-              count={2000}
-              statusArray={bankerSlide}
-              progressColor={"bg-black"}
-              progressContainerColor={"bg-gray-300"}
-              progressContainerStyles={`h-2`}
-              footer={""}
-              loop={false}
-            />
-          </div>
+          <StatusSlider
+            count={2000}
+            statusArray={bankerSlide}
+            progressColor={"bg-black"}
+            progressContainerColor={"bg-gray-300"}
+            progressContainerStyles={`h-2`}
+            footer={""}
+            loop={false}
+          />
         </div>
       </div>
     </div>

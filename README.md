@@ -40,5 +40,6 @@ Make changes in `feature/test` and commit the code.
 
 - push the code to release/1.0.0
 - Raise two PR's one with main and one with develop.
+- Merge Pr after review and deploye to production
 
 -------------------X---------------------X-----------------end.

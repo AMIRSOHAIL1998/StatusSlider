@@ -38,8 +38,6 @@ Make changes in `feature/test` and commit the code.
 
 ### If PR review need
 
-s
-
 - push the code to release/1.0.0
 - Raise two PR's one with main and one with develop.
 

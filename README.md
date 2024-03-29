@@ -31,13 +31,14 @@ Make changes in `feature/test` and commit the code.
 - commit changes
 - merge back to `develop` and main `branch`
 
-### mergin release to main and devlop.
+### merging release to main and devlop.
 
 - To merge release in both main and develop use command `git flow release finish <branch_name>` branch_name here represents the name of the release branch.
 - For example `git flow release finish release/1.0.0` will merge code in main and devlop both.
-- and deletes the `release/test` branch after merging.
 
 ### If PR review need
 
 - push the code to release/1.0.0
 - Raise two PR's one with main and one with develop.
+
+-------------------X---------------------X-----------------end.

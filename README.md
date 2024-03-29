@@ -26,3 +26,13 @@ Make changes in `feature/test` and commit the code.
 
 - create a `release` branch from `develop`
 - use command `git flow release start 1.0.0`
+- above command will create a realease beanch with name `release/1.0.0`
+- make release changes version update and test
+- commit changes
+- merge back to `develop` and main `branch`
+
+### mergin release to main and devlop.
+
+- To merge release in both main and develop use command `git flow release finish <branch_name>` branch_name here represents the name of the release branch.
+- For example `git flow release finish release/1.0.0` will merge code in main and devlop both.
+- and deletes the `release/test` branch after merging.
